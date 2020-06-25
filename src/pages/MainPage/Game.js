@@ -162,8 +162,7 @@ export default class Game extends React.Component {
     const { gamePresets } = this.state;
     this.setState({
       sizeOfBoard: gamePresets[e.target.value].field,
-      //delay: gamePresets[e.target.value].delay,
-      delay: 1000,
+      delay: gamePresets[e.target.value].delay,
       squares: Array(
         gamePresets[e.target.value].field * gamePresets[e.target.value].field
       ).fill(null),
