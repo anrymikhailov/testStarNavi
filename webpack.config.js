@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
-  mode: "production",
+  mode: "development",
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].css",
@@ -19,8 +19,8 @@ module.exports = {
   entry: {
     app: "./src/index.js",
   },
-  devtool: false,
-  //devtool: "inline-source-map",
+  //devtool: false,
+  devtool: "inline-source-map",
   devServer: {
     contentBase: "./dist",
     hot: true,

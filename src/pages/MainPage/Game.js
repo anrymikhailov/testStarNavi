@@ -13,7 +13,7 @@ import {
   squareAlreadyFilled,
 } from "../../utils/gameUtils";
 
-export default class Game extends React.Component {
+export default class Game extends React.PureComponent {
   state = {
     gamePresets: null,
     gameWinners: null,
@@ -121,8 +121,8 @@ export default class Game extends React.Component {
         break;
       case "Computer":
         this.setState(
-          () => ({ message: "Computer win", winner: "Computer" }),
-          () => this.finishGame()
+          { message: "Computer win", winner: "Computer" },
+          () => () => this.finishGame()
         );
         break;
       case "Nobody":
@@ -161,9 +161,10 @@ export default class Game extends React.Component {
     e.preventDefault();
     const { gamePresets } = this.state;
     this.setState({
+      message: null,
       sizeOfBoard: gamePresets[e.target.value].field,
-      //delay: gamePresets[e.target.value].delay,
-      delay: 1000,
+      delay: gamePresets[e.target.value].delay,
+      //delay: 1000,
       squares: Array(
         gamePresets[e.target.value].field * gamePresets[e.target.value].field
       ).fill(null),
@@ -171,7 +172,7 @@ export default class Game extends React.Component {
   };
 
   handleChangeName = e => {
-    this.setState({ userName: e.target.value });
+    this.setState({ userName: e.target.value, message: null });
   };
 
   componentWillUnmount() {

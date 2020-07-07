@@ -5,21 +5,17 @@ import { Button, SquareButton } from "../../components/Button";
 import InputText from "../../components/Input";
 import Select from "../../components/Select";
 
-const ShowControlsElement = ({
+const ShowControlsElement = React.memo(function MemoizeElements({
   handleSelect,
   handleChangeName,
   userName,
   isDisable,
   winner,
   clickPlayStartGame,
-}) => {
+}) {
   return (
     <>
-      <Select
-        defaultValue=""
-        onChange={e => handleSelect(e)}
-        disabled={isDisable}
-      >
+      <Select defaultValue="" onChange={handleSelect} disabled={isDisable}>
         <option value="" disabled>
           Pick game mode
         </option>
@@ -30,7 +26,7 @@ const ShowControlsElement = ({
       <InputText
         type="text"
         placeholder="Enter your name"
-        onChange={e => handleChangeName(e)}
+        onChange={handleChangeName}
         value={userName}
         disabled={isDisable}
       />
@@ -39,7 +35,7 @@ const ShowControlsElement = ({
       </Button>
     </>
   );
-};
+});
 
 ShowControlsElement.propTypes = {
   handleSelect: PropTypes.func,
@@ -58,7 +54,11 @@ ShowMessage.propTypes = {
   message: PropTypes.string,
 };
 
-const ShowTableOfSquares = ({ sizeOfBoard, setGreenSquare, squares }) => {
+const ShowTableOfSquares = React.memo(function MemoizeShowTableOfSquares({
+  sizeOfBoard,
+  setGreenSquare,
+  squares,
+}) {
   return (
     <div>
       {[...Array(sizeOfBoard * sizeOfBoard).keys()].map((item, id) => (
@@ -73,7 +73,7 @@ const ShowTableOfSquares = ({ sizeOfBoard, setGreenSquare, squares }) => {
       ))}
     </div>
   );
-};
+});
 
 ShowTableOfSquares.propTypes = {
   sizeOfBoard: PropTypes.number,
