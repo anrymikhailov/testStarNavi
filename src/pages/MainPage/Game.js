@@ -164,7 +164,6 @@ export default class Game extends React.PureComponent {
       message: null,
       sizeOfBoard: gamePresets[e.target.value].field,
       delay: gamePresets[e.target.value].delay,
-      //delay: 1000,
       squares: Array(
         gamePresets[e.target.value].field * gamePresets[e.target.value].field
       ).fill(null),
